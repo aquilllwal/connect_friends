@@ -8,7 +8,8 @@ class UsersController < ApplicationController
   end
 
   def show
-		@user = User.find(params[:id])
+    @user = User.find(params[:id])
+    @posts = @user.posts.paginate(page: params[:page])
 	end
 	
 	def new
@@ -50,13 +51,6 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:username, :email, :password)
-    end
-
-    def logged_in_user
-      unless logged_in?
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
     end
 
     # to check if correct user is editing or not

@@ -1,2 +1,12 @@
-<h1 align="center"> Welcome to connect</h1>
-<li><%= link_to "Log in", login_path %></li>
+<% if logged_in? %>
+  <%= render 'shared/user_info' %>
+  <%= render 'shared/post_form' %>
+	<p>
+		<h3>Post Feed</h3>
+		<%= render 'shared/feed' %>
+	</p>
+<% else %>
+	<h1 align="center"> Welcome to connect</h1>
+	<%= link_to "Log in", login_path %>|
+	 <%= link_to "Sign up now!", signup_path %>
+<%end%>
