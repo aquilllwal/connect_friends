@@ -4,11 +4,12 @@
 		</br><%= @user.username %>
 	</p>
 </h1>
+<h2 align="center"><%=link_to "create new post", root_url%>
 
 <% if @user.posts.any? %>
 	<h3>Posts (<%= @user.posts.count %>)</h3>
 	<ol>
     <%= render @posts %>
-  </ol>
+  	</ol>
 	<%= will_paginate @posts %>
 <%end%>

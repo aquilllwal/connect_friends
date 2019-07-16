@@ -7,5 +7,5 @@
   <% if current_user?(post.user) %>
       <%= link_to "delete", post_path(post), method: :delete,
                                        data: { confirm: "You sure?" } %>
-    <% end %>
+  <% end %>
 </li>

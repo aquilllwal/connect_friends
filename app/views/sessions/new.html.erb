@@ -1,3 +1,4 @@
+<%unless logged_in?%>
 <h1>Log in</h1>
 <%= form_for(:session, url: login_path) do |f| %>
 	</p>
@@ -14,3 +15,7 @@
 <% end %>
 
 <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+<%else%>
+	<h4>you've already logged in</h4>
+	<%=link_to "go to profile", user_path(current_user)%>
+<%end%>
