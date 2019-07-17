@@ -8,7 +8,7 @@
   <%end%>
 </P>
 
-<%unless @search.nil?%>
+<% if @search%>
 <p>
   </br><strong>username: </strong><%= @search.username %>
   </br><strong>email: </strong><%= @search.email %>

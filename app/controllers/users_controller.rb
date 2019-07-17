@@ -54,8 +54,6 @@ class UsersController < ApplicationController
       if @search.nil?
         flash[:danger] = "No user exist"
       end
-    else
-      flash[:danger] = "you have entered an empty search"
     end
   end
 
