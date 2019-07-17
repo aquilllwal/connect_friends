@@ -1,6 +1,10 @@
+<div class = "results-block">
+    <%= bootstrap_flash %>
+</div>
 <% if @search%>
 <div class="well results-block">
   </br><strong>username: </strong><%= @search.username %>
   </br><strong>email: </strong><%= @search.email %>
+  </br><strong>profile: </strong><%= link_to "profile", user_path(@search) %>
 </div>
 <%end%>

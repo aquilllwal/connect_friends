@@ -15,7 +15,8 @@ class User < ApplicationRecord
     Post.where("user_id = ?", id)
   end
 
-  def self.new_from_lookup(username)
-    User.find_by(username: username)
+  def self.new_from_lookup(arg)
+    User.find_by(username: arg)
   end
+
 end

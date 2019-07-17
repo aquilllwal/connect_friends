@@ -51,13 +51,15 @@ class UsersController < ApplicationController
   def search
     if params[:user].present?
       @search = User.new_from_lookup(params[:user])
-      if @search
+      if @search and @search != current_user
         respond_to do |format|
           format.js { render partial: 'users/result' }
         end
       else
-        flash[:danger] = "No user exist"
-        redirect_to goto_users_path
+        respond_to do |format|
+          flash.now[:danger] = "No user exist/current user"
+          format.js { render partial: 'users/result' }
+        end
       end
     end
   end
