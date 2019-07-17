@@ -14,4 +14,8 @@ class User < ApplicationRecord
   def feed
     Post.where("user_id = ?", id)
   end
+
+  def self.new_from_lookup(username)
+    User.find_by(username: username)
+  end
 end

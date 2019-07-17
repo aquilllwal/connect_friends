@@ -1,4 +1,7 @@
 <h1>All users</h1>
+<%= button_tag(type: :button) do%>
+  <%=link_to "search", goto_users_path%>
+<%end%>
 
 <%= will_paginate %>
 <u>

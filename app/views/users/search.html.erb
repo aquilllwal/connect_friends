@@ -1,0 +1,16 @@
+<P>
+  <h4>Search users</h4>
+  <%=form_tag search_users_path, method: :get do%>
+    <%= text_field_tag :user, params[:user], placeholder: "user name", autofocus: true%>
+    <%= button_tag(type: :submit) do%>
+      search
+    <%end%>
+  <%end%>
+</P>
+
+<%unless @search.nil?%>
+<p>
+  </br><strong>username: </strong><%= @search.username %>
+  </br><strong>email: </strong><%= @search.email %>
+</p>
+<%end%>

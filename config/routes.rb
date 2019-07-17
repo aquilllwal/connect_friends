@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   resources :users
   resources :posts, only: [:create, :destroy]
+  get 'search_users', to: 'users#search'
+  get 'goto_users', to: 'users#search'
 end

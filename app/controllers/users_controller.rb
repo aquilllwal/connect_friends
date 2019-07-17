@@ -48,6 +48,17 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def search
+    if params[:user].present?
+      @search = User.new_from_lookup(params[:user])
+      if @search.nil?
+        flash[:danger] = "No user exist"
+      end
+    else
+      flash[:danger] = "you have entered an empty search"
+    end
+  end
+
   private
 
     def user_params
