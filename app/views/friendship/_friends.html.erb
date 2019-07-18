@@ -1,0 +1,49 @@
+<table>
+	<tr>
+		<th colspan="3" align="left">
+			<%= pluralize(@user.friends.count, "Connect friend") %>
+		</th>
+	</tr>
+	<% @user.friends.each do |friend| %>
+	<tr>
+		<td width="50">
+			<%= link_to gravatar_for(friend, size: 50), user_path(friend) %>
+		</td>
+		<td><%= link_to friend.username, user_path(friend) %></td>
+		<td>
+			<%= link_to "delete", delete_path(friend),
+                                  data: { confirm: "unfriend #{friend.username}" } %>
+    </td>
+	</tr>
+	<%end%>
+	<% unless @user.requested_friends.empty?%>
+		<tr>
+			<th colspan="3" align="left">
+				<%= pluralize(@user.requested_friends.count, "requested friend") %>
+			</th>
+		</tr>
+		<% @user.requested_friends.each do |requester| %>
+		<tr>
+			<td><%= link_to gravatar_for(requester, size: 50), user_path(requester) %></td>
+			<td><%= link_to requester.username, user_path(requester) %></td>									
+			<td>
+					<%=link_to "accept", accept_path(requester)%> | 
+					<%=link_to "decline", decline_path(requester)%>
+			</td>
+		</tr>
+		<%end%>
+	<%end%>
+		<% unless @user.pending_friends.empty? %>
+			<tr>
+				<th colspan="3" align="left">
+					<%= pluralize(@user.pending_friends.count, "pending friend") %>
+				</th>
+			</tr>
+			<% @user.pending_friends.each do |pending_friend| %>
+				<td><%= link_to gravatar_for(pending_friend, size: 50),user_path(pending_friend) %></td>
+				<td><%= link_to pending_friend.username, user_path(pending_friend) %></td>
+				<td><%= link_to gravatar_for(pending_friend, size: 50),user_path(pending_friend) %></td>
+				<td><%= link_to "cancel request", cancel_path(pending_friend), data: { confirm: "cancel #{pending_friend.username} request?" }%>
+			<%end%>
+		<%end%>	
+</table>

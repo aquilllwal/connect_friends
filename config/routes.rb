@@ -12,4 +12,10 @@ Rails.application.routes.draw do
   resources :posts, only: [:create, :destroy]
   get 'search_users', to: 'users#search'
   get 'goto_users', to: 'users#search'
+  get 'users/:id/friend', to: 'friendship#create'
+  resources :friendship, only: [:destroy]
+  get 'delete/:id', to: 'friendship#delete', as: 'delete'
+  get 'accept/:id', to: 'friendship#accept', as: 'accept'
+  get 'decline/:id', to: 'friendship#decline', as: 'decline'
+  get 'cancel/:id', to: 'friendship#cancel', as: 'cancel'
 end

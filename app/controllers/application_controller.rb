@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   
   include Authentication
   include SessionsHelper
+  include FriendshipHelper
   
-  helper_method :current_user?, :logged_in?, :current_user
+  helper_method :current_user?, :logged_in?, :current_user, :friendship_status
 
 end

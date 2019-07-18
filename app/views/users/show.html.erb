@@ -4,7 +4,34 @@
 		</br><%= @user.username %>
 	</p>
 </h1>
-<h2 align="center"><%=link_to "create new post", root_url%>
+<h2 align="center"><%=link_to "create new post", root_url if current_user == @user%><h2>
+
+<hr noshade />
+<% if @user == current_user%>
+	<h2>friends</h2>
+	<%= render 'friendship/friends' %>
+<%end%>
+<hr noshade />
+
+<% if logged_in? and @user != current_user %>
+	<div class="sidebar_box">
+		<h2>
+			<span class="header">Actions</span>
+			<br clear="all" />
+		</h2>
+		
+		<ul>
+			<li><%= friendship_status(current_user, @user) %>
+					<% unless Friendship.exists?(current_user, @user) %>
+						<br />
+						<%= link_to "Request friendship with #{@user.username}",
+								{ :controller => "friendship", :action => "create", :id => @user },
+								:confirm => "Send friend request to #{@user.username}?" %>
+					<%end%>	
+			</li>			
+		</ul>
+	</div>
+<%end%>
 
 <% if @user.posts.any? %>
 	<h3>Posts (<%= @user.posts.count %>)</h3>
@@ -13,3 +40,4 @@
   	</ol>
 	<%= will_paginate @posts %>
 <%end%>
+
