@@ -1,18 +1,26 @@
-<%= form_for @user do |f|%>
-	<%= render 'shared/error_messages', object: f.object %>
-	<p>
-		<%= f.label :username %>
-		<%= f.text_field :username, placeholder: "enter username" %>
-	</p>
-	<p>
-		<%= f.label :email%>
-		<%= f.email_field :email, placeholder: "enter email"%>
-	</p>
-	<p>
-		<%= f.label :password%>
-		<%= f.password_field :password, placeholder: "password"%>
-	</p>
-	<p>
-			<%= f.submit (@user.new_record? ? "signup" : "update account")%>
-	</p>
-<%end%>
+<div class="row" style="margin-top:100px;">
+  <div class = "col-md-6">
+    <div class = "panel panel-success">
+      <div class = "panel-body">
+			<%= simple_form_for @user do |f|%>
+				<%= render 'shared/error_messages', object: f.object %>
+				<p>
+					<%= f.label :username %>
+					<%= f.text_field :username, placeholder: "enter username" %>
+				</p>
+				<p>
+					<%= f.label :email%>
+					<%= f.email_field :email, placeholder: "enter email"%>
+				</p>
+				<p>
+					<%= f.label :password%>
+					<%= f.password_field :password, placeholder: "password"%>
+				</p>
+				<p>
+						<%= f.submit (@user.new_record? ? "signup" : "update account"), class: "btn btn-primary"%>
+				</p>
+			<%end%>
+		</div>
+	</div>
+  </div>
+</div>			

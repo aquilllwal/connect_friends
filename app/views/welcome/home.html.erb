@@ -1,10 +1,12 @@
 <% if logged_in? %>
+<div class="col-md-4">
   <%= render 'shared/user_info' %>
   <%= render 'shared/post_form' %>
 	<p>
 		<h3>Post Feed</h3>
 		<%= render 'shared/feed' %>
 	</p>
+</div>
 <% else %>
 	<h1 align="center"> Welcome to connect</h1>
 	<%= link_to "Log in", login_path %>|

@@ -1,43 +1,48 @@
-<h1>
-	<p align = "center">
-    <%= gravatar_for @user%>
-		</br><%= @user.username %>
+
+
+	<p align="center">
+		<%= gravatar_for @user%>
+			<h3></br><%= @user.username %></h3>
+	
 	</p>
-</h1>
-<h2 align="center"><%=link_to "create new post", root_url if current_user == @user%><h2>
+	<h2 align="center"><%=link_to "create new post", root_url if current_user == @user%></h2>
+	
 
-<hr noshade />
-<% if @user == current_user%>
-	<h2>friends</h2>
-	<%= render 'friendship/friends' %>
-<%end%>
-<hr noshade />
+	<hr noshade />
+	<% if @user == current_user%>
+		<h2>friends</h2>
+		<%= render 'friendship/friends' %>
+	<%end%>
+	<hr noshade />
 
-<% if logged_in? and @user != current_user %>
-	<div class="sidebar_box">
-		<h2>
-			<span class="header">Actions</span>
-			<br clear="all" />
-		</h2>
-		
-		<ul>
-			<li><%= friendship_status(current_user, @user) %>
-					<% unless Friendship.exists?(current_user, @user) %>
-						<br />
-						<%= link_to "Request friendship with #{@user.username}",
-								{ :controller => "friendship", :action => "create", :id => @user },
-								:confirm => "Send friend request to #{@user.username}?" %>
-					<%end%>	
-			</li>			
-		</ul>
+	<% if logged_in? and @user != current_user %>
+		<div class="sidebar_box">
+			<h2>
+				<span class="header">Actions</span>
+				<br clear="all" />
+			</h2>
+			
+			<ul>
+				<li><%= friendship_status(current_user, @user) %>
+						<% unless Friendship.exists?(current_user, @user) %>
+							<br />
+							<%= link_to "Request friendship with #{@user.username}",
+									{ :controller => "friendship", :action => "create", :id => @user },
+									:confirm => "Send friend request to #{@user.username}?" %>
+						<%end%>	
+				</li>			
+			</ul>
+		</div>
+	<%end%>
+	<div class="col-md-4">
+	<% if @user.posts.any? %>
+		<h3>Posts (<%= @user.posts.count %>)</h3>
+		<ol class="post">
+		<%= render @posts %>
+		</ol>
+		<%= will_paginate @posts %>
+	<%end%>
 	</div>
-<%end%>
 
-<% if @user.posts.any? %>
-	<h3>Posts (<%= @user.posts.count %>)</h3>
-	<ol>
-    <%= render @posts %>
-  	</ol>
-	<%= will_paginate @posts %>
-<%end%>
+	
 
