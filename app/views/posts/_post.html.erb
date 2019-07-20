@@ -6,6 +6,7 @@
     </br>Posted <%= time_ago_in_words(post.created_at) %> ago.
   <% if current_user?(post.user) %>
       <%= link_to "delete", post_path(post), method: :delete,
-                                       data: { confirm: "You sure?" } %>
+                                       data: { confirm: "You sure?" } %> | 
+      <%= link_to "edit", edit_post_path(post)%>
   <% end %>
 </li>

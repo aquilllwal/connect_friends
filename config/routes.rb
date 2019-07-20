@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post '/login',   to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   resources :users
-  resources :posts, only: [:create, :destroy]
+  resources :posts, only: [:create, :destroy, :edit, :update]
   get 'search_users', to: 'users#search'
   get 'goto_users', to: 'users#search'
   get 'users/:id/friend', to: 'friendship#create'
