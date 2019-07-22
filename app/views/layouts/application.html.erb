@@ -21,9 +21,7 @@
     <![endif]-->
   </head>
   <body>
-    <% flash.each do |message_type, message| %>
-      <%= message_type %> <%= message %>
-    <% end %>
+    
     <div class="navbar navbar-default navbar-static-top">
       <div class="container">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -54,9 +52,9 @@
         <% if logged_in?%>
           <div class="col-lg-3">
             <div class="well sidebar-nav">
-              <h3>Sidebar</h3>
+              <h3>Connect</h3>
               <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
+                <li class="nav-header">quick links</li>
                 <li><%= link_to "Users", users_path  %></li>
                 <li><%= link_to "Profile", user_path(current_user)  %></li>
                 <li><%= link_to "settings", edit_user_path(current_user)  %></li>

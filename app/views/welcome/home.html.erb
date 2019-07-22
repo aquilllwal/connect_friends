@@ -1,14 +1,17 @@
 <% if logged_in? %>
-<div class="col-md-4">
+<div class="well well-lg">
   <%= render 'shared/user_info' %>
   <%= render 'shared/post_form' %>
-	<p>
-		<h3>Post Feed</h3>
-		<%= render 'shared/feed' %>
-	</p>
 </div>
+	<h3>Post Feed</h3>
+
+		<%= render 'shared/feed' %>
+	
+
 <% else %>
+	<div class="jumbotron">
 	<h1 align="center"> Welcome to connect</h1>
-	<%= link_to "Log in", login_path %>|
-	 <%= link_to "Sign up now!", signup_path %>
+	<%= link_to "Log in", login_path, class:"btn btn-primary btn-lg" %>
+	 <%= link_to "Sign up now!", signup_path, class:"btn btn-primary btn-lg" %>
+	 </div>
 <%end%>

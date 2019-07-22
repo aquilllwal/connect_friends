@@ -1,5 +1,5 @@
 <% unless logged_in?%>
-	<h1 align="center"> Sign Up</h1>
+	<h1> Create a new account</h1>
 	<%= render "form"%>
 <%else%>
 	<%=link_to "log out to sign up", logout_path, method: :delete%>

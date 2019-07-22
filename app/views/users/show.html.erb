@@ -5,19 +5,17 @@
 			<h3></br><%= @user.username %></h3>
 	
 	</p>
-	<h2 align="center"><%=link_to "create new post", root_url if current_user == @user%>
-	 | <%= button_tag(type: :button) do%>
-  		<%=link_to "search users", goto_users_path%>
-	   <%end%>
+	<h2 align="center"><%=link_to "create new post", root_url , class: "btn btn-primary btn-md" if current_user == @user%>
+  	<%=link_to "search users", goto_users_path, class: "btn btn-primary btn-md"%>
 	</h2>
 	
 
-	<hr noshade />
+	<div class="well well-md">
 	<% if @user == current_user%>
 		<h2>friends</h2>
 		<%= render 'friendship/friends' %>
 	<%end%>
-	<hr noshade />
+	</div>
 
 	<% if logged_in? and @user != current_user %>
 		<div class="sidebar_box">
@@ -26,27 +24,27 @@
 				<br clear="all" />
 			</h2>
 			
-			<ul>
-				<li><%= friendship_status(current_user, @user) %>
+			<ul class="list-group">
+				<li class="list-group-item"><%= friendship_status(current_user, @user) %>
 						<% unless Friendship.exists?(current_user, @user) %>
 							<br />
-							<%= link_to "Request friendship with #{@user.username}",
+							<%= link_to "Add friend: #{@user.username}", 
 									{ :controller => "friendship", :action => "create", :id => @user },
-									:confirm => "Send friend request to #{@user.username}?" %>
+									data:{confirm: "Send friend request to #{@user.username}?"}, class: "btn btn-primary btn-sm" %>
 						<%end%>	
 				</li>			
 			</ul>
 		</div>
 	<%end%>
-	<div class="col-md-4">
+	
 	<% if @user.posts.any? %>
 		<h3>Posts (<%= @user.posts.count %>)</h3>
-		<ol class="post">
+		<ul class="list-group">
 		<%= render @posts %>
-		</ol>
+		</ul>
 		<%= will_paginate @posts %>
 	<%end%>
-	</div>
+	
 
 	
 

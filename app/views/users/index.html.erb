@@ -5,11 +5,10 @@
 <%end%>
 
     <%= will_paginate %>
-    <ul class="post">
+    <ul class="list-group">
       <% @users.each do |user| %>
         <%= render user%>
       <% end %>
     </ul>
- 
     <%= will_paginate %>
    

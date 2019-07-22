@@ -49,18 +49,12 @@ class UsersController < ApplicationController
   end
 
   def search
-    if params[:user].present?
-      @search = User.new_from_lookup(params[:user])
-      if @search and @search != current_user
-        respond_to do |format|
+    if params[:query].present?
+      @results = User.search(params[:query])
+      flash.now[:danger] = "No user exist/current user" unless (@results and @results != current_user)
+       respond_to do |format|
           format.js { render partial: 'users/result' }
-        end
-      else
-        respond_to do |format|
-          flash.now[:danger] = "No user exist/current user"
-          format.js { render partial: 'users/result' }
-        end
-      end
+       end
     end
   end
 

@@ -1,7 +1,7 @@
 <P>
   <h4>Search users</h4>
   <%=form_tag search_users_path, remote: true, method: :get, id: "user-lookup-form" do%>
-    <%= text_field_tag :user, params[:user], placeholder: "user name", autofocus: true%>
+    <%= text_field_tag :query, params[:query], placeholder: "user name", autofocus: true%>
     <%= button_tag(type: :submit) do%>
       search
     <%end%>
