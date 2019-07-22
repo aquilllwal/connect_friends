@@ -1,5 +1,6 @@
 class UserWorker
 	include Sidekiq::Worker
+	sidekiq_options retry: false
 	
 	def perform(id)
 		logged_user = User.find(id)
